@@ -1,4 +1,4 @@
-package com.example.calculadorfonoma
+package com.example.calculadorfonoma.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
