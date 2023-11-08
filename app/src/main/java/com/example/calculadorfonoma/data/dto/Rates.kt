@@ -1,10 +1,17 @@
 package com.example.calculadorfonoma.data.dto
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Rates(
 
-    val success:String,
+    @Json(name = "success")
+    val success:Boolean,
 
-    val timestamp:String,
+    @Json(name = "timestamp")
+    val timestamp:Int,
 
-    val rates:List<Rate>
+    @Json(name = "rates")
+    val rates: Rate
 )
