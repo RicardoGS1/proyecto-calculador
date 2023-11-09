@@ -1,4 +1,4 @@
-package com.example.calculadorfonoma.id
+package com.example.calculadorfonoma.di
 
 import com.example.calculadorfonoma.common.Constant.BASE_URL
 import com.example.calculadorfonoma.data.api.ApiService
