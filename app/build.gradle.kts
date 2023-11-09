@@ -65,15 +65,15 @@ dependencies {
 
 
     // LiveData
- //   implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-  //  implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
+    //implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    //implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
 
-    // Lifecycles only (without viewModel or LiveData)
+     //Lifecycles only (without viewModel or LiveData)
     //implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
    // implementation ("androidx.compose.runtime:runtime:1.5.4")
 
     // WorkManager
-   // implementation ("androidx.work:work-runtime-ktx:2.8.1")
+   //implementation ("androidx.work:work-runtime-ktx:2.8.1")
    // implementation ("androidx.work:work-gcm:2.8.1")
 
 
@@ -95,7 +95,9 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
-   // implementation ("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.11.0")
+
+    implementation ("com.squareup.okhttp3:okhttp-urlconnection:3.4.1")
 
 
 }

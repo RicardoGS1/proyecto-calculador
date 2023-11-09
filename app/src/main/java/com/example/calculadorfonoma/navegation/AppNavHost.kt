@@ -7,7 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.hlayan.forexrate.ui.converter.ConverterRoute
-import com.hlayan.forexrate.ui.converter.ConverterViewModel
+import com.example.calculadorfonoma.ui.converter.ConverterViewModel
 
 
 @Composable

@@ -1,15 +1,21 @@
-package com.hlayan.forexrate.ui.converter
+package com.example.calculadorfonoma.ui.converter
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.calculadorfonoma.common.NetworkResponseState
+import com.example.calculadorfonoma.domain.usecase.GetRatesUseCase
 
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class ConverterViewModel @Inject constructor() : ViewModel() {
+class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRatesUseCase) : ViewModel()
+{
 
     private val _forexRate = mutableStateOf(TextFieldValue())
     val forexRate: State<TextFieldValue> get() = _forexRate
@@ -18,14 +24,39 @@ class ConverterViewModel @Inject constructor() : ViewModel() {
     val mmkRate: State<TextFieldValue> get() = _mmkRate
 
     private var selectedRate = 0.0
-/*
-    fun setSelectedRate(value: Double) {
-        selectedRate = value
-        _forexRate.value = TextFieldValue("1")
-        _mmkRate.value = TextFieldValue(value.decimalFormat)
+
+
+    init
+    {
+        getRates()
     }
-*/
-  /*
+
+    private fun getRates()
+    {
+
+        getRatesUseCase().onEach {
+            when (it)
+            {
+                is NetworkResponseState.Error -> println("error")
+                is NetworkResponseState.Loading -> println("loading")
+                is NetworkResponseState.Success -> println(it.result.toString())
+
+            }
+
+
+        }.launchIn(viewModelScope)
+
+
+    }
+
+
+    /*
+        fun setSelectedRate(value: Double) {
+            selectedRate = value
+            _forexRate.value = TextFieldValue("1")
+            _mmkRate.value = TextFieldValue(value.decimalFormat)
+        }
+    *//*
     fun updateForexRate(value: TextFieldValue) {
 
         val formatted = AmountFormat.format(_forexRate.value, value)

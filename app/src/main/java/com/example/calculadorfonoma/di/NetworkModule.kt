@@ -6,7 +6,8 @@ import com.example.calculadorfonoma.data.api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
@@ -15,8 +16,8 @@ import javax.inject.Singleton
 
 
 @Module
-@InstallIn(ViewModelComponent::class)
-object ApiModule {
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
 
     @Singleton
     @Provides
@@ -31,13 +32,12 @@ object ApiModule {
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(baseUrl)
             .build()
+
     }
 
     @Singleton
     @Provides
     fun restDataSource(retrofit: Retrofit): ApiService =
         retrofit.create(ApiService::class.java)
-
-
 
 }

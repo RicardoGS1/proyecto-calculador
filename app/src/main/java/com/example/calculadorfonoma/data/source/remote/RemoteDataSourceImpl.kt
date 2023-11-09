@@ -1,6 +1,7 @@
 package com.virtualworld.tienda_muebles_plastico.data.source.remote
 
 
+import com.example.calculadorfonoma.common.Constant.KEY_API
 import com.example.calculadorfonoma.common.NetworkResponseState
 import com.example.calculadorfonoma.data.api.ApiService
 import com.example.calculadorfonoma.data.dto.Rates
@@ -24,8 +25,7 @@ class RemoteDataSourceImpl @Inject constructor(
             emit(NetworkResponseState.Loading)
             try
             {
-                val response = apiService.getRates()
-                println("DataSource $response")
+                val response = apiService.getRates(KEY_API)
                 emit(NetworkResponseState.Success(response))
             } catch (e: Exception)
             {
@@ -34,137 +34,5 @@ class RemoteDataSourceImpl @Inject constructor(
         }
     }
 
-   /*
-
-    override fun getAllCategoriesListFromApi(): Flow<NetworkResponseState<List<String>>>
-    {
-        return flow {
-            emit(NetworkResponseState.Loading)
-            try
-            {
-                val response = apiService.getAllCategoriesListFromApi()
-                println("DataSource $response")
-                emit(NetworkResponseState.Success(response))
-            } catch (e: Exception)
-            {
-                emit(NetworkResponseState.Error(e))
-            }
-        }
-    }
-
-    override fun getProductsListByCategoryNameFromApi(categoryName: String): Flow<NetworkResponseState<Products>>
-    {
-        return flow {
-
-
-            try
-            {
-                emit(NetworkResponseState.Loading)
-                val response = apiService.getProductsListByCategoryNameFromApi(categoryName)
-                emit(NetworkResponseState.Success(response))
-            } catch (e: Exception)
-            {
-                emit(NetworkResponseState.Error(e))
-            }
-        }
-    }
-
-    override  fun setOrderedListForApi(listOrder: List<Order>): Flow<NetworkResponseState<Orders>>
-    {
-
-
-
-        return flow {
-
-            println(listOrder.toString())
-            emit(NetworkResponseState.Loading)
-            try
-            {
-
-
-
-
-                val response = apiService.setSentOrderForApi(Orders(listOrder))
-                emit(NetworkResponseState.Success(response))
-                println("exito")
-
-            } catch (e: Exception)
-            {
-                println("error")
-                emit(NetworkResponseState.Error(e))
-
-            }
-        }
-
-/*
-        coroutineScope() {
-            launch(Dispatchers.IO) {
-
-                println("aaaaaaaaaaaaaaaaaaaaa"+listOrder)
-
-                val aaa= Orders(listOrder)
-
-
-                try
-                {
-
-                 val aaa =  apiService.setSentOrderForApi(aaa)
-                    println(aaa.toString())
-
-
-                } catch (e: Exception)
-                {
-                    println(e)
-                }
-            }
-
-*/
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    override fun getSingleProductByIdFromApi(productId: Int): Flow<NetworkResponseState<Product>>
-    {
-        return flow {
-            try
-            {
-                emit(NetworkResponseState.Loading)
-                val response = apiService.getSingleProductByIdFromApi(productId)
-                emit(NetworkResponseState.Success(response))
-            } catch (e: Exception)
-            {
-                emit(NetworkResponseState.Error(e))
-            }
-        }
-    }
-
-    override fun getProductsListBySearchFromApi(query: String): Flow<NetworkResponseState<Products>>
-    {
-        return flow {
-            emit(NetworkResponseState.Loading)
-            try
-            {
-                val response = apiService.getProductsListBySearchFromApi(query)
-                emit(NetworkResponseState.Success(response))
-            } catch (e: Exception)
-            {
-                emit(NetworkResponseState.Error(e))
-            }
-        }
-    }
-
-
-*/
 
 }
