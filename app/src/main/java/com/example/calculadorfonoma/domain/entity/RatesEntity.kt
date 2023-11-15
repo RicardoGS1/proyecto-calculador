@@ -49,9 +49,5 @@ data class RatesEntity(
 
 
 
- //   val success: Boolean,
 
- //   val timestamp: Int,
-
-  //  val rates:Rate
 )

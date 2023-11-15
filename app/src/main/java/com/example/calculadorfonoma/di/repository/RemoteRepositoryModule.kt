@@ -1,4 +1,4 @@
-package com.example.calculadorfonoma.di
+package com.example.calculadorfonoma.di.repository
 
 import com.virtualworld.tienda_muebles_plastico.data.repository.RemoteRepository
 import com.example.calculadorfonoma.data.repository.RemoteRepositoryImpl

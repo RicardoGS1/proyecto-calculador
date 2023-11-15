@@ -2,12 +2,11 @@ package com.example.calculadorfonoma.data.repository
 
 import com.example.calculadorfonoma.common.NetworkResponseState
 import com.example.calculadorfonoma.data.dto.Rates
-import com.example.calculadorfonoma.domain.entity.RatesEntity
-import com.virtualworld.tienda_muebles_plastico.data.source.remote.RemoteDataSource
 import com.example.calculadorfonoma.di.coroutine.IoDispatcher
+import com.example.calculadorfonoma.domain.entity.RatesEntity
+import com.example.calculadorfonoma.domain.mapper.RatesBaseMapper
 import com.virtualworld.tienda_muebles_plastico.data.repository.RemoteRepository
-import com.virtualworld.tienda_muebles_plastico.domain.mapper.RateListMapper
-import com.virtualworld.tienda_muebles_plastico.domain.mapper.RatesBaseMapper
+import com.virtualworld.tienda_muebles_plastico.data.source.remote.RemoteDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

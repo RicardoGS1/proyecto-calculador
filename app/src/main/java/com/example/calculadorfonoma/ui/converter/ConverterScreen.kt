@@ -19,9 +19,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -32,15 +29,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.calculadorfonoma.R
-import com.example.calculadorfonoma.common.ScreenStateProducts
 
 
 @Composable
 fun ConverterRoute(viewModel: ConverterViewModel)
 {
-    val ratesState by viewModel.rates.observeAsState(initial = null)
-
-    println("run Main Scrren")
+    val onCurrencyValueOut by viewModel.rates.observeAsState(initial = null)
 
 
     val onCurrencyTypeIn = { currency: String ->
@@ -51,7 +45,7 @@ fun ConverterRoute(viewModel: ConverterViewModel)
         viewModel.onChangerCurrencyOut(currency)
     }
 
-    val onCurrencyValue = { value: String ->
+    val onCurrencyValueIn = { value: String ->
         viewModel.onChangerValue(value)
     }
 
@@ -59,44 +53,21 @@ fun ConverterRoute(viewModel: ConverterViewModel)
         viewModel.getRates()
     }
 
-    ConverterScreen(
-        onConvertClicked = onConvertClicked,
-        onCurrencyValue = onCurrencyValue,
-        onCurrencyTypeIn = onCurrencyTypeIn,
-        onCurrencyTypeOut = onCurrencyTypeOut,
-        ratesState = ratesState,
-    )
+    ConverterScreen(onConvertClicked = onConvertClicked,
+                    onCurrencyValueIn = onCurrencyValueIn,
+                    onCurrencyTypeIn = onCurrencyTypeIn,
+                    onCurrencyTypeOut = onCurrencyTypeOut,
+                    onCurrencyValueOut = onCurrencyValueOut)
 
 }
+
 
 @Composable
 fun ConverterScreen(onConvertClicked: () -> Unit,
-                    ratesState: Double?,
                     onCurrencyTypeIn: (String) -> Unit,
                     onCurrencyTypeOut: (String) -> Unit,
-                    onCurrencyValue: (String) -> Unit)
-{
-
-
-            println("sesssefull")
-         SuccessScreen(onConvertClicked, onCurrencyTypeIn, onCurrencyTypeOut, onCurrencyValue, ratesState)
-
-
-
-
-
-
-}
-
-
-
-
-@Composable
-fun SuccessScreen(onConvertClicked: () -> Unit,
-                  onCurrencyTypeIn: (String) -> Unit,
-                  onCurrencyTypeOut: (String) -> Unit,
-                  onCurrencyValue: (String) -> Unit,
-                  ratesState: Double?)
+                    onCurrencyValueIn: (String) -> Unit,
+                    onCurrencyValueOut: Double?)
 {
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -108,7 +79,7 @@ fun SuccessScreen(onConvertClicked: () -> Unit,
             text = "Currency Converter",
         )
 
-        CardIn(onCurrencyTypeIn, onCurrencyValue)
+        CardIn(onCurrencyTypeIn = onCurrencyTypeIn, onCurrencyValueIn = onCurrencyValueIn)
 
         Icon(
             modifier = Modifier
@@ -122,14 +93,13 @@ fun SuccessScreen(onConvertClicked: () -> Unit,
             contentDescription = "",
         )
 
-        CardOut(onCurrencyTypeOut, ratesState)
+        CardOut(onCurrencyTypeOut = onCurrencyTypeOut, onCurrencyValueOut = onCurrencyValueOut)
 
         Box(modifier = Modifier.fillMaxSize()) {
             Button(modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .padding(horizontal = 12.dp, vertical = 40.dp),
-                   onClick =  onConvertClicked ) {
+                .padding(horizontal = 12.dp, vertical = 40.dp), onClick = onConvertClicked) {
                 Text(text = "CONVERT")
             }
         }
@@ -137,12 +107,8 @@ fun SuccessScreen(onConvertClicked: () -> Unit,
 }
 
 @Composable
-private fun CardIn(onCurrencyTypeIn: (String) -> Unit, onCurrencyValue: (String) -> Unit)
+private fun CardIn(onCurrencyTypeIn: (String) -> Unit, onCurrencyValueIn: (String) -> Unit)
 {
-
- //   var numberCurrency by remember { mutableStateOf("") }
-
-
 
     Card(
         modifier = Modifier.padding(8.dp),
@@ -186,20 +152,16 @@ private fun CardIn(onCurrencyTypeIn: (String) -> Unit, onCurrencyValue: (String)
                 .align(Alignment.CenterVertically)
                 .padding(start = 12.dp))
 
-            TextFieldCost(true, onCurrencyValue, null)
+            TextFieldCost(true, onCurrencyValueIn)
         }
     }
 }
 
 
 @Composable
-private fun CardOut(onCurrencyTypeOut: (String) -> Unit, ratesState: Double?)
+private fun CardOut(onCurrencyTypeOut: (String) -> Unit, onCurrencyValueOut: Double?)
 {
 
-
-
-
-    var numberCurrency by remember { mutableStateOf("") }
 
     Card(
         modifier = Modifier.padding(8.dp),
@@ -246,7 +208,7 @@ private fun CardOut(onCurrencyTypeOut: (String) -> Unit, ratesState: Double?)
                 .align(Alignment.CenterVertically)
                 .padding(start = 12.dp))
 
-            TextFieldCost(false, {},ratesState)
+            TextFieldCost(false, {}, onCurrencyValueOut)
         }
     }
 

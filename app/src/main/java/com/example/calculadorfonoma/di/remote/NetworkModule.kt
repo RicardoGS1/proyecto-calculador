@@ -1,4 +1,4 @@
-package com.example.calculadorfonoma.di
+package com.example.calculadorfonoma.di.remote
 
 import com.example.calculadorfonoma.common.Constant.BASE_URL
 import com.example.calculadorfonoma.data.api.ApiService

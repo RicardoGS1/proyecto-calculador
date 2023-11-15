@@ -27,25 +27,16 @@ val lightBlue = Color(0xFFECEFF8)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextFieldCost(enabledEdit: Boolean, onCurrencyValue: (String) -> Unit, ratesState: Double?)
+fun TextFieldCost(enabledEdit: Boolean, onCurrencyValue: (String) -> Unit, ratesState: Double? = null)
 {
-
     var numberCurrency by remember { mutableStateOf("") }
-
-
-
     onCurrencyValue(numberCurrency)
-
 
     OutlinedTextField(modifier = Modifier
         .fillMaxWidth()
         .padding(8.dp),
                       value = ratesState?.toString() ?: numberCurrency,
-
-                      onValueChange = {
-
-                              numberCurrency=ValidarNumeroDecimal(it)
-                      },
+                      onValueChange = { numberCurrency = ValidNumberDecimal(it) },
                       shape = RoundedCornerShape(30.dp),
                       enabled = enabledEdit,
                       textStyle = LocalTextStyle.current.copy(fontSize = 18.sp),
@@ -58,20 +49,18 @@ fun TextFieldCost(enabledEdit: Boolean, onCurrencyValue: (String) -> Unit, rates
                       trailingIcon = {
                           if (numberCurrency.isNotEmpty())
                           {
-                              IconButton(onClick = { numberCurrency="" }) {
+                              IconButton(onClick = { numberCurrency = "" }) {
                                   Icon(imageVector = Icons.Outlined.Close, contentDescription = null)
                               }
                           }
                       })
 }
 
-fun ValidarNumeroDecimal(preCurrency:String) : String {
-
-    val filteredChars = preCurrency.filterIndexed {
-            index, c -> c in "0123456789" ||   (c == '.' && preCurrency.indexOf('.') == index)
+fun ValidNumberDecimal(preCurrency: String): String
+{
+    val filteredChars = preCurrency.filterIndexed { index, c ->
+        c in "0123456789" || (c == '.' && preCurrency.indexOf('.') == index)
     }
-
-
     return filteredChars
 }
 

@@ -1,4 +1,4 @@
-package com.example.calculadorfonoma.di
+package com.example.calculadorfonoma.di.Source
 
 import com.virtualworld.tienda_muebles_plastico.data.source.remote.RemoteDataSource
 import com.virtualworld.tienda_muebles_plastico.data.source.remote.RemoteDataSourceImpl
@@ -10,7 +10,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class RemoteDataSourceModule {
+abstract class RemoteSourceModule {
 
     @Binds
     @ViewModelScoped

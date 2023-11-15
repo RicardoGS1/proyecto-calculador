@@ -1,13 +1,10 @@
-package com.virtualworld.tienda_muebles_plastico.di.mappers
+package com.example.calculadorfonoma.di.mappers
+
 
 import com.example.calculadorfonoma.data.dto.Rates
 import com.example.calculadorfonoma.data.mapper.RatesEntityMapper
 import com.example.calculadorfonoma.domain.entity.RatesEntity
-import com.example.calculadorfonoma.ui.mapper.RatesEntityToUiMapper
-import com.example.calculadorfonoma.ui.uiData.RatesUiData
-
-
-import com.virtualworld.tienda_muebles_plastico.domain.mapper.RatesBaseMapper
+import com.example.calculadorfonoma.domain.mapper.RatesBaseMapper
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -23,9 +20,7 @@ abstract class MapperModule {
     abstract fun bindRatesEntityMapper(ratesEntityMapper: RatesEntityMapper): RatesBaseMapper<Rates, RatesEntity>
 
 
-    @Binds
-    @ViewModelScoped
-    abstract fun bindRatesUiMapper(ratesEntityToUiMapper: RatesEntityToUiMapper): RatesBaseMapper<RatesEntity, RatesUiData>
+
 
 
 

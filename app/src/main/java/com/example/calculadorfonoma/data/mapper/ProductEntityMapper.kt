@@ -2,7 +2,7 @@ package com.example.calculadorfonoma.data.mapper
 
 import com.example.calculadorfonoma.data.dto.Rates
 import com.example.calculadorfonoma.domain.entity.RatesEntity
-import com.virtualworld.tienda_muebles_plastico.domain.mapper.RatesBaseMapper
+import com.example.calculadorfonoma.domain.mapper.RatesBaseMapper
 import javax.inject.Inject
 
 class RatesEntityMapper @Inject constructor() : RatesBaseMapper<Rates, RatesEntity>

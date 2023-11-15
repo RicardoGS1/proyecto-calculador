@@ -16,17 +16,8 @@ class GetRatesUseCaseImpl @Inject constructor(
     override fun invoke(): Flow<NetworkResponseState<RatesEntity>>
     {
 
-
-
         return repository.getRates()
-
-
-
     }
 
-  /*  override fun invoke(categoryName: String): Flow<NetworkResponseState<List<ProductEntity>>> {
-        return repository.getProductsListByCategoryNameFromApi(categoryName)
-    }
-    */
 
 }
