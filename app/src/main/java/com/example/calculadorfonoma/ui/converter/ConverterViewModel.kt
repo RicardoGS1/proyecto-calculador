@@ -26,7 +26,7 @@ class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRat
 
     fun getRates()
     {
-        getRatesUseCase.getRates().onEach {
+        getRatesUseCase().onEach {
             when (it)
             {
                 is NetworkResponseState.Error -> println("error")
