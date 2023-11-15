@@ -64,9 +64,9 @@ dependencies {
     implementation("androidx.compose.material3:material3")
 
 
-    // LiveData
-    //implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    //implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
+     //LiveData
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
 
      //Lifecycles only (without viewModel or LiveData)
     //implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")

@@ -6,7 +6,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.hlayan.forexrate.ui.converter.ConverterRoute
+import com.example.calculadorfonoma.ui.converter.ConverterRoute
 import com.example.calculadorfonoma.ui.converter.ConverterViewModel
 
 
@@ -19,7 +19,7 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier)
 
         composable(Converter.route) {
                 val viewModel = hiltViewModel<ConverterViewModel>()
-                ConverterRoute(viewModel)
+                ConverterRoute(viewModel,)
 
         }
 

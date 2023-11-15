@@ -1,52 +1,100 @@
 package com.example.calculadorfonoma.ui.converter
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.calculadorfonoma.common.NetworkResponseState
+import com.example.calculadorfonoma.common.ScreenStateProducts
+import com.example.calculadorfonoma.domain.entity.RatesEntity
 import com.example.calculadorfonoma.domain.usecase.GetRatesUseCase
+import com.example.calculadorfonoma.ui.uiData.RatesUiData
+
+
+import com.virtualworld.tienda_muebles_plastico.domain.mapper.RatesBaseMapper
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import javax.inject.Inject
 
 @HiltViewModel
-class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRatesUseCase) : ViewModel()
+class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRatesUseCase, private val mapper: RatesBaseMapper<RatesEntity, RatesUiData>) :
+    ViewModel()
 {
 
-    private val _forexRate = mutableStateOf(TextFieldValue())
-    val forexRate: State<TextFieldValue> get() = _forexRate
+    private val _rates = MutableLiveData<Double>()
+    val rates: LiveData<Double> get() = _rates
 
-    private val _mmkRate = mutableStateOf(TextFieldValue())
-    val mmkRate: State<TextFieldValue> get() = _mmkRate
+    var currencyIn = "USD"
+    var currencyOut = "USD"
+    var currencyValue = 0.0
 
-    private var selectedRate = 0.0
-
-
-    init
+    fun getRates()
     {
-        getRates()
-    }
-
-    private fun getRates()
-    {
-
         getRatesUseCase().onEach {
             when (it)
             {
                 is NetworkResponseState.Error -> println("error")
                 is NetworkResponseState.Loading -> println("loading")
-                is NetworkResponseState.Success -> println(it.result.toString())
+                is NetworkResponseState.Success ->
+                {
 
+                    solveConversion(it.result.currencyMap[currencyIn], it.result.currencyMap[currencyOut])
+
+
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun solveConversion(d: Double?, d1: Double?)
+    {
+        if (d != null && d1 != null)
+        {
+
+            val result = currencyValue * (d1 / d)
+
+            val df = DecimalFormat("#.##")
+            val roundoff = df.format(result)
+
+            _rates.postValue(roundoff.toDouble())
+            println(d1 * d1)
+        }
+    }
+
+
+    fun onChangerCurrencyIn(currency: String)
+    {
+        currencyIn = currency
+        println(currency)
+    }
+
+    fun onChangerCurrencyOut(currency: String)
+    {
+        currencyOut = currency
+        println(currency)
+    }
+
+    fun onChangerValue(value: String)
+    {
+
+        if (value != "")
+        {
+
+
+            val result: Double? = value.toDouble()
+
+            if (result != null)
+            {
+                currencyValue = result
             }
 
-
-        }.launchIn(viewModelScope)
-
-
+        }
+        println(value)
     }
 
 
