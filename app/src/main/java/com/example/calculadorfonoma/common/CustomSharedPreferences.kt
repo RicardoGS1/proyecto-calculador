@@ -1,4 +1,4 @@
-package com.ahmetozaydin.ecommerceapp.utils
+package com.example.calculadorfonoma.common
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
