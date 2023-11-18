@@ -8,6 +8,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Qualifier
 
+
 @Module
 @InstallIn(ViewModelComponent::class)
 object CoroutineDispatchersModule {

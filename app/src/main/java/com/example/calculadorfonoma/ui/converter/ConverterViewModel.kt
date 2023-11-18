@@ -20,6 +20,8 @@ class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRat
     private val _rates = MutableLiveData<Double>()
     val rates: LiveData<Double> get() = _rates
 
+
+
     private var currencyIn = "USD"
     private var currencyOut = "USD"
     private var currencyValue = 0.0
@@ -38,6 +40,16 @@ class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRat
             }
         }.launchIn(viewModelScope)
     }
+
+
+
+
+
+
+
+
+
+
 
     private fun solveConversion(d: Double?, d1: Double?)
     {

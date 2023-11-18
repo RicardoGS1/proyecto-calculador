@@ -1,6 +1,5 @@
 package com.example.calculadorfonoma.domain.entity
 
-import com.example.calculadorfonoma.data.dto.Rate
 
 data class RatesEntity(
 
