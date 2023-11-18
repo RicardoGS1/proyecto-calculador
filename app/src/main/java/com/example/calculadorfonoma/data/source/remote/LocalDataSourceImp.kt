@@ -15,8 +15,6 @@ class LocalDataSourceImp  @Inject constructor(private val appDao: AppDao)  :Loca
 
     override fun getRates(): Flow<NetworkResponseState<List<RatesEntityRoom>>>
     {
-
-
         return flow {
             emit(NetworkResponseState.Loading)
             try
@@ -30,5 +28,4 @@ class LocalDataSourceImp  @Inject constructor(private val appDao: AppDao)  :Loca
             }
         }
     }
-
 }

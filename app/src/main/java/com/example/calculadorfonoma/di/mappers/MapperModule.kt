@@ -2,14 +2,14 @@ package com.example.calculadorfonoma.di.mappers
 
 
 import com.example.calculadorfonoma.data.dto.Rates
-import com.example.calculadorfonoma.data.mapper.RatesEntityMapper
-import com.example.calculadorfonoma.data.mapper.RatesEntityRoomMapper
-import com.example.calculadorfonoma.data.mapper.RatesRoomEntityMapper
+import com.example.calculadorfonoma.data.mapper.ListRatesEntityRoomToRatesEntityMapper
+import com.example.calculadorfonoma.data.mapper.RatesEntityToListRatesEntityRoomMapper
+import com.example.calculadorfonoma.data.mapper.RatesToRatesEntityMapper
 import com.example.calculadorfonoma.domain.entity.RatesEntity
 import com.example.calculadorfonoma.domain.entity.RatesEntityRoom
-import com.example.calculadorfonoma.domain.mapper.ProductListMapper
 import com.example.calculadorfonoma.domain.mapper.RatesBaseMapper
 import com.example.calculadorfonoma.domain.mapper.RatesListToSingleMapper
+import com.example.calculadorfonoma.domain.mapper.RatesSingleToListMapper
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,17 +22,17 @@ abstract class MapperModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun bindRatesEntityMapper(ratesEntityMapper: RatesEntityMapper): RatesBaseMapper<Rates, RatesEntity>
+    abstract fun bindRatesToRatesEntityMapper(ratesToRatesEntityMapper: RatesToRatesEntityMapper): RatesBaseMapper<Rates, RatesEntity>
 
 
     @Binds
     @ViewModelScoped
-    abstract fun bindRatesEntityRoomMapper(ratesEntityRoomMapper: RatesEntityRoomMapper): ProductListMapper<RatesEntity, RatesEntityRoom>
+    abstract fun bindRatesEntityToListRatesEntityRoomMapper(ratesEntityToListRatesEntityRoomMapper: RatesEntityToListRatesEntityRoomMapper): RatesSingleToListMapper<RatesEntity, RatesEntityRoom>
 
 
     @Binds
     @ViewModelScoped
-    abstract fun bindRatesRoomEntityMapper(ratesRoomEntityMapper: RatesRoomEntityMapper): RatesListToSingleMapper<RatesEntityRoom, RatesEntity >
+    abstract fun bindListRatesEntityRoomToRatesEntityMapper(listRatesEntityRoomToRatesEntityMapper: ListRatesEntityRoomToRatesEntityMapper): RatesListToSingleMapper<RatesEntityRoom, RatesEntity >
 
 
 

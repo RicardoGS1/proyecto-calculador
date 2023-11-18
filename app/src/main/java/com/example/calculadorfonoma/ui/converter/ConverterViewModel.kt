@@ -16,11 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRatesUseCase) : ViewModel()
 {
-
     private val _rates = MutableLiveData<Double>()
     val rates: LiveData<Double> get() = _rates
-
-
 
     private var currencyIn = "USD"
     private var currencyOut = "USD"

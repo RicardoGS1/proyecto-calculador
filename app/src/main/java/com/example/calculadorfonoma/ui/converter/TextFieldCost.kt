@@ -23,7 +23,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-val lightBlue = Color(0xFFECEFF8)
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,6 +31,7 @@ fun TextFieldCost(enabledEdit: Boolean, onCurrencyValue: (String) -> Unit, rates
 {
     var numberCurrency by remember { mutableStateOf("") }
     onCurrencyValue(numberCurrency)
+    val lightBlue = Color(0xFFECEFF8)
 
     OutlinedTextField(modifier = Modifier
         .fillMaxWidth()

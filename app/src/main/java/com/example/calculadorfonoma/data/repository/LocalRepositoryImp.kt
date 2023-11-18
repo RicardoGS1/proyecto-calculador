@@ -5,8 +5,8 @@ import com.example.calculadorfonoma.data.source.remote.LocalDataSource
 import com.example.calculadorfonoma.di.coroutine.IoDispatcher
 import com.example.calculadorfonoma.domain.entity.RatesEntity
 import com.example.calculadorfonoma.domain.entity.RatesEntityRoom
-import com.example.calculadorfonoma.domain.mapper.ProductListMapper
 import com.example.calculadorfonoma.domain.mapper.RatesListToSingleMapper
+import com.example.calculadorfonoma.domain.mapper.RatesSingleToListMapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -18,23 +18,21 @@ import javax.inject.Inject
 class LocalRepositoryImp @Inject constructor(
     private val localDataSource: LocalDataSource,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-    private val allProductsMapper: ProductListMapper<RatesEntity, RatesEntityRoom>,
-    private val getProductsMapper: RatesListToSingleMapper<RatesEntityRoom,RatesEntity >,
-
-    )  :LocalRepository{
+    private val ratesSingleToListMapper: RatesSingleToListMapper<RatesEntity, RatesEntityRoom>,
+    private val ratesListToSingleMapper: RatesListToSingleMapper<RatesEntityRoom, RatesEntity>,
+) : LocalRepository
+{
 
 
     override suspend fun setRates(ratesEntity: RatesEntity)
     {
         withContext(ioDispatcher) {
-            localDataSource.insertRates(allProductsMapper.map(ratesEntity))
+            localDataSource.insertRates(ratesSingleToListMapper.map(ratesEntity))
         }
     }
 
     override fun getRates(): Flow<NetworkResponseState<RatesEntity>>
     {
-
-        println("getratesRoom repocitory")
 
         return localDataSource.getRates().map { response ->
             when (response)
@@ -42,19 +40,12 @@ class LocalRepositoryImp @Inject constructor(
 
                 is NetworkResponseState.Loading -> NetworkResponseState.Loading
 
-                is NetworkResponseState.Success -> NetworkResponseState.Success(getProductsMapper.map(response.result))
+                is NetworkResponseState.Success -> NetworkResponseState.Success(ratesListToSingleMapper.map(response.result))
 
 
                 is NetworkResponseState.Error -> NetworkResponseState.Error(response.exception)
             }
         }.flowOn(ioDispatcher)
-
-
-
-
-
-
-
 
     }
 }

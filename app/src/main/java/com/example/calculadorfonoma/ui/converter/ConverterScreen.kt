@@ -118,7 +118,7 @@ private fun CardIn(onCurrencyTypeIn: (String) -> Unit, onCurrencyValueIn: (Strin
     ) {
 
         Text(
-            text = "Selct your currentcy type",
+            text = "Select your currency type",
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             style = TextStyle(
@@ -134,7 +134,7 @@ private fun CardIn(onCurrencyTypeIn: (String) -> Unit, onCurrencyValueIn: (Strin
         ThemedTaskMenu(onCurrencyTypeIn)
 
         Text(
-            text = "Enter your currentcy",
+            text = "Enter your currency",
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             style = TextStyle(
@@ -174,7 +174,7 @@ private fun CardOut(onCurrencyTypeOut: (String) -> Unit, onCurrencyValueOut: Dou
 
 
         Text(
-            text = "Selct your currentcy type",
+            text = "Select your currency type",
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             style = TextStyle(
@@ -190,7 +190,7 @@ private fun CardOut(onCurrencyTypeOut: (String) -> Unit, onCurrencyValueOut: Dou
         ThemedTaskMenu(onCurrencyTypeOut)
 
         Text(
-            text = "Your converted currentcy",
+            text = "Your converted currency",
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             style = TextStyle(

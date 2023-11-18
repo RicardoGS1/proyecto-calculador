@@ -5,7 +5,7 @@ import com.example.calculadorfonoma.domain.entity.RatesEntity
 import com.example.calculadorfonoma.domain.mapper.RatesBaseMapper
 import javax.inject.Inject
 
-class RatesEntityMapper @Inject constructor() : RatesBaseMapper<Rates, RatesEntity>
+class RatesToRatesEntityMapper @Inject constructor() : RatesBaseMapper<Rates, RatesEntity>
 {
     override fun map(input: Rates): RatesEntity
     {
@@ -48,13 +48,6 @@ class RatesEntityMapper @Inject constructor() : RatesBaseMapper<Rates, RatesEnti
                          "LAK" to input.rates.LAK,
                          "IDR" to input.rates.IDR,
                          "KHR" to input.rates.KHR,
-                         "SGD" to input.rates.SGD)
-
-
-            //  success = input.success,
-            //  timestamp = input.timestamp,
-            //  rates = input.rates
-        )
-
+                         "SGD" to input.rates.SGD))
     }
 }

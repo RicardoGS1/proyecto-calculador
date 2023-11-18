@@ -1,4 +1,4 @@
-package com.virtualworld.tienda_muebles_plastico.data.source.remote
+package com.example.calculadorfonoma.data.source.remote
 
 import com.example.calculadorfonoma.common.NetworkResponseState
 import com.example.calculadorfonoma.data.dto.Rates

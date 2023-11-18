@@ -1,4 +1,4 @@
-package com.virtualworld.tienda_muebles_plastico.data.repository
+package com.example.calculadorfonoma.data.repository
 
 import com.example.calculadorfonoma.common.NetworkResponseState
 import com.example.calculadorfonoma.domain.entity.RatesEntity

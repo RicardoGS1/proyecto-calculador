@@ -2,8 +2,8 @@ package com.example.calculadorfonoma.di.Source
 
 import com.example.calculadorfonoma.data.source.remote.LocalDataSource
 import com.example.calculadorfonoma.data.source.remote.LocalDataSourceImp
-import com.virtualworld.tienda_muebles_plastico.data.source.remote.RemoteDataSource
-import com.virtualworld.tienda_muebles_plastico.data.source.remote.RemoteDataSourceImpl
+import com.example.calculadorfonoma.data.source.remote.RemoteDataSource
+import com.example.calculadorfonoma.data.source.remote.RemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

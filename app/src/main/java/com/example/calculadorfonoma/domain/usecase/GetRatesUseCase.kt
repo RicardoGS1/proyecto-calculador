@@ -8,7 +8,4 @@ import kotlinx.coroutines.flow.Flow
 interface GetRatesUseCase {
     operator fun invoke(): Flow<NetworkResponseState<RatesEntity>>
 
-
-
-   // operator fun invoke(categoryName: String): Flow<NetworkResponseState<RatesEntity>>
 }

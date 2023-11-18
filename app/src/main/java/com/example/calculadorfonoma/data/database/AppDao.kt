@@ -10,13 +10,10 @@ import com.example.calculadorfonoma.domain.entity.RatesEntityRoom
 @Dao
 interface AppDao
 {
-
-
     @Query("SELECT * FROM rates")
     suspend fun getRates():List<RatesEntityRoom>
 
     @Insert(RatesEntityRoom::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRates(listRatesEntityRoom: List<RatesEntityRoom>)
-
 
 }
