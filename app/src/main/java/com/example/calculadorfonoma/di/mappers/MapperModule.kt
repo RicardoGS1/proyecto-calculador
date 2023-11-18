@@ -4,10 +4,12 @@ package com.example.calculadorfonoma.di.mappers
 import com.example.calculadorfonoma.data.dto.Rates
 import com.example.calculadorfonoma.data.mapper.RatesEntityMapper
 import com.example.calculadorfonoma.data.mapper.RatesEntityRoomMapper
+import com.example.calculadorfonoma.data.mapper.RatesRoomEntityMapper
 import com.example.calculadorfonoma.domain.entity.RatesEntity
 import com.example.calculadorfonoma.domain.entity.RatesEntityRoom
 import com.example.calculadorfonoma.domain.mapper.ProductListMapper
 import com.example.calculadorfonoma.domain.mapper.RatesBaseMapper
+import com.example.calculadorfonoma.domain.mapper.RatesListToSingleMapper
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -26,6 +28,11 @@ abstract class MapperModule {
     @Binds
     @ViewModelScoped
     abstract fun bindRatesEntityRoomMapper(ratesEntityRoomMapper: RatesEntityRoomMapper): ProductListMapper<RatesEntity, RatesEntityRoom>
+
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindRatesRoomEntityMapper(ratesRoomEntityMapper: RatesRoomEntityMapper): RatesListToSingleMapper<RatesEntityRoom, RatesEntity >
 
 
 

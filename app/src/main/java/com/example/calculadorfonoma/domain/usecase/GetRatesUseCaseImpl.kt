@@ -11,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 class GetRatesUseCaseImpl @Inject constructor(
@@ -22,7 +21,7 @@ class GetRatesUseCaseImpl @Inject constructor(
 ) : GetRatesUseCase
 {
 
-    private var refreshTime = 10000000000L
+    private var refreshTime = 600000000000L
 
 
     override fun invoke(): Flow<NetworkResponseState<RatesEntity>>
@@ -40,7 +39,7 @@ class GetRatesUseCaseImpl @Inject constructor(
 
         val a =1
 
-        if (a==1)
+        if (updateTime != null && updateTime != 0L && aa < refreshTime && aa > 0 )
         {
 
 
@@ -106,6 +105,12 @@ class GetRatesUseCaseImpl @Inject constructor(
     {
         println("getFromRoom")
 
+
+        return localRepository.getRates()
+
+      /*
+        localRepository.getRates()
+
       return runBlocking(Dispatchers.IO){
 
             println("getFromRoom")
@@ -127,4 +132,7 @@ class GetRatesUseCaseImpl @Inject constructor(
 // return flow {
   //         emit(NetworkResponseState.Loading)
   //  }
-}}
+
+       */
+}
+}

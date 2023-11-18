@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface LocalRepository {
     suspend fun setRates(ratesEntity: RatesEntity)
 
-    suspend fun getRates(currencyName:String): Flow<NetworkResponseState<RatesEntity>>
+    fun getRates(): Flow<NetworkResponseState<RatesEntity>>
 
 }
