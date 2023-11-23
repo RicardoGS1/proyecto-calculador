@@ -27,6 +27,12 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Build app
+        run: ./gradlew assemble
+
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
