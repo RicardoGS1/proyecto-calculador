@@ -64,6 +64,8 @@ dependencies {
      //LiveData
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation ("androidx.compose.runtime:runtime-livedata:1.6.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose-android:2.8.4")
+
 
     //Testing
     testImplementation("junit:junit:4.13.2")

@@ -1,27 +1,29 @@
 package com.example.calculadorfonoma.ui.converter
 
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.calculadorfonoma.common.NetworkResponseState
 import com.example.calculadorfonoma.domain.usecase.GetRatesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 import java.text.DecimalFormat
 import javax.inject.Inject
 
 @HiltViewModel
 class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRatesUseCase) : ViewModel()
 {
-    private val _rates = MutableLiveData<Double>()
-    val rates: LiveData<Double> get() = _rates
+    private val _rates = MutableStateFlow<Double>(0.0)
+    val rates = _rates.asStateFlow()
 
     private var currencyIn = "USD"
     private var currencyOut = "USD"
     private var currencyValue = 0.0
+
 
     fun getRates()
     {
@@ -40,14 +42,6 @@ class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRat
 
 
 
-
-
-
-
-
-
-
-
     private fun solveConversion(d: Double?, d1: Double?)
     {
         if (d != null && d1 != null)
@@ -55,7 +49,7 @@ class ConverterViewModel @Inject constructor(private val getRatesUseCase: GetRat
             val result = currencyValue * (d1 / d)
             val df = DecimalFormat("#.##")
             val roundoff = df.format(result)
-            _rates.postValue(roundoff.toDouble())
+            _rates.update { roundoff.toDouble()}
         }
     }
 
