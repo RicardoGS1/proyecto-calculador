@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.calculadorfonoma"
+    namespace = "com.virtualworld3d.calculadorfonoma"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.calculadorfonoma"
+        applicationId = "com.virtualworld3d.calculadorfonoma"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
